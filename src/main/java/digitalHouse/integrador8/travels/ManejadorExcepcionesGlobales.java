@@ -51,10 +51,4 @@ public class ManejadorExcepcionesGlobales extends ResponseEntityExceptionHandler
         RespuestaTipoError tipoError = new RespuestaTipoError(Arrays.asList(e.getMessage()));
         return new ResponseEntity<>(tipoError, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(ExpiredJwtException.class)
-    public ResponseEntity<Object> manejadorCamposNulos (ClaimJwtException e) {
-        RespuestaTipoError tipoError = new RespuestaTipoError(Arrays.asList(e.getMessage()));
-        return new ResponseEntity<>(tipoError, HttpStatus.BAD_REQUEST);
-    }
 }
