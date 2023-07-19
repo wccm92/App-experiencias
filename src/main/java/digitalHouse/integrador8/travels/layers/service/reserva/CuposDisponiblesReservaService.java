@@ -16,9 +16,6 @@ public class CuposDisponiblesReservaService implements ContarCuposReservaService
     @Autowired
     DetalleExperienciaService experienciaService;
 
-    @Autowired
-    ReservaRepository reservaRepository;
-
 
     public Integer obtenerCuposDisponibles(Long idExperiencia, SolicitudCupoFechaDTO fechaReserva) {
         Experiencia experiencia = experienciaService.obtenerExperienciaDB(idExperiencia);

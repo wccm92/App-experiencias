@@ -49,11 +49,10 @@ public class ListarExperienciasService {
     
     public int paginasTotal() {
     	int sizeExperiencias = experienciaRepository.findAll().size();
-    	
     	int cociente = sizeExperiencias / PAGE_SIZE;
-        int resto = sizeExperiencias % PAGE_SIZE;
+        int residuo = sizeExperiencias % PAGE_SIZE;
 
-        if (resto > 0) {
+        if (residuo > 0) {
             cociente++;
         }
         return cociente;
