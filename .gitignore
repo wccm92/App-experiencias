@@ -3,8 +3,8 @@ HELP.md
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### AWS Credentials ###
-src/main/resources/application-aws.yml
+### DB credentials ###
+src/main/resources/application.yml
 
 
 ### STS ###

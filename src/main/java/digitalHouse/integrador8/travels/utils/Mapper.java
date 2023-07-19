@@ -75,7 +75,7 @@ public abstract class Mapper {
     }
     
     public static Categoria convertCategoriaDtoToEntity(CategoriaDTO categoriaDTO) {
-        return new Categoria(categoriaDTO.getTipoExperiencia(), new ImagenCategoria(), categoriaDTO.getDescripcion());
+        return new Categoria(categoriaDTO.getTipoExperiencia(), new EtiquetaCategoria(), categoriaDTO.getDescripcion());
     }
     
     public static CategoriaDTO convertCategoriaToDto(Categoria categoria) {
@@ -83,7 +83,7 @@ public abstract class Mapper {
                 .id(categoria.getId())
                 .descripcion(categoria.getDescripcion())
                 .tipoExperiencia(categoria.getTipoExperiencia())
-                .urlImagen(categoria.getImagenCategoria().getUrlImagen())
+                .urlImagen(categoria.getEtiquetaCategoria().getUrlImagen())
                 .build();
     }
 

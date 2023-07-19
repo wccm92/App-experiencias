@@ -2,7 +2,7 @@ package digitalHouse.integrador8.travels.layers.service.categoria;
 
 import digitalHouse.integrador8.travels.dto.CategoriaDTO;
 import digitalHouse.integrador8.travels.entity.Categoria;
-import digitalHouse.integrador8.travels.entity.ImagenCategoria;
+import digitalHouse.integrador8.travels.entity.EtiquetaCategoria;
 import digitalHouse.integrador8.travels.exception.CategoriaNoValidaException;
 import digitalHouse.integrador8.travels.exception.EntidadExistenteException;
 import digitalHouse.integrador8.travels.layers.repository.CategoriaRepository;
@@ -31,9 +31,9 @@ public class CrearCategoriaService implements TravelService<Categoria> {
         	 throw new EntidadExistenteException(categoriaDTO.getTipoExperiencia());
         } else {
             Categoria categoria = categoriaRepository.save(Mapper.convertCategoriaDtoToEntity(categoriaDTO));
-            ImagenCategoria imagenCategoria = new ImagenCategoria(categoriaDTO.getUrlImagen(), categoria);
-            imagenCategoriaRepository.save(imagenCategoria);
-            categoria.setImagenCategoria(imagenCategoria);
+            EtiquetaCategoria etiquetaCategoria = new EtiquetaCategoria(categoriaDTO.getUrlImagen(), categoria);
+            imagenCategoriaRepository.save(etiquetaCategoria);
+            categoria.setEtiquetaCategoria(etiquetaCategoria);
             return categoriaRepository.save(categoria);
         }
     }

@@ -22,6 +22,7 @@ digitalHouse/integrador8/travels/layers/service/experiencia/CrearExperienciaServ
 digitalHouse/integrador8/travels/layers/service/experiencia/ListarExperienciasService.class
 digitalHouse/integrador8/travels/layers/service/experiencia/CalificarExperienciaService.class
 digitalHouse/integrador8/travels/config/AppConfig$1.class
+digitalHouse/integrador8/travels/entity/EtiquetaCategoria.class
 digitalHouse/integrador8/travels/layers/repository/ReservaRepository.class
 digitalHouse/integrador8/travels/layers/service/experiencia/EliminarExperienciaServiceImpl.class
 digitalHouse/integrador8/travels/layers/repository/DestinoRepository.class
@@ -108,5 +109,4 @@ digitalHouse/integrador8/travels/dto/DatosUsuarioDTO$DatosUsuarioDTOBuilder.clas
 digitalHouse/integrador8/travels/dto/CategoriaDTO$CategoriaDTOBuilder.class
 digitalHouse/integrador8/travels/layers/repository/PaqueteRepository.class
 digitalHouse/integrador8/travels/entity/Servicios.class
-digitalHouse/integrador8/travels/entity/ImagenCategoria.class
 digitalHouse/integrador8/travels/entity/Categoria.class

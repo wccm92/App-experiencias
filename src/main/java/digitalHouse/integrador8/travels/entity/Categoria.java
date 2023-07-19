@@ -32,7 +32,7 @@ public class Categoria {
 
     @NonNull
     @OneToOne(mappedBy = "categoria", cascade = CascadeType.ALL)
-    private ImagenCategoria imagenCategoria;
+    private EtiquetaCategoria etiquetaCategoria;
     
     @NonNull
     @Column(name = "descripcion", length = 500)

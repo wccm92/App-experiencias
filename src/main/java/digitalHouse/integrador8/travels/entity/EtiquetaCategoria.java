@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "imagen_categoria")
+@Table(name = "etiqueta_categoria")
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
 @Getter
 @Setter
-public class ImagenCategoria {
+public class EtiquetaCategoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
