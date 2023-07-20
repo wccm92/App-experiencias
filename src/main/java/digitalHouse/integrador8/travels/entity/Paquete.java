@@ -3,6 +3,7 @@ package digitalHouse.integrador8.travels.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Builder
 @Entity
 @Table(name = "paquete")
 @Getter

@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.List;
 
+@Builder
 @Entity
 @Table(name = "destino")
 @Getter
