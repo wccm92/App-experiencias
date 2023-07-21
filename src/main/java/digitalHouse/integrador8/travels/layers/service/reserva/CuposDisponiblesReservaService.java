@@ -18,8 +18,7 @@ public class CuposDisponiblesReservaService implements ContarCuposReservaService
 
 
     public Integer obtenerCuposDisponibles(Long idExperiencia, SolicitudCupoFechaDTO fechaReserva) {
-        Experiencia experiencia = experienciaService.obtenerExperienciaDB(idExperiencia);
-        return experiencia.getCupoMaximo() - contarCuposUsados(experiencia, fechaReserva.getFecha());
+        return obtenerCuposDisponibles(idExperiencia, fechaReserva.getFecha());
     }
 
     public Integer obtenerCuposDisponibles(Long idExperiencia, LocalDate fechaReserva) {
