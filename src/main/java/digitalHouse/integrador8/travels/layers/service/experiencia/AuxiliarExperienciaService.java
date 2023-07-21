@@ -30,22 +30,25 @@ public class AuxiliarExperienciaService {
 
     public Experiencia guardarExperiencia(SolicitudExperienciaDTO experienciaDTO) {
         try {
-            Experiencia experiencia = new Experiencia();
-            experiencia.setNombreExperiencia(experienciaDTO.getNombreExperiencia());
-            experiencia.setDescripcion(experienciaDTO.getDescripcion());
-            experiencia.setCategoria(guardarCategoriaService.obtenerCategoria(experienciaDTO.getCategoria()));
-            experiencia.setDestino(guardarDestinoService.guardarDestino(experienciaDTO.getDestino()));
-            experiencia.setCantidadCalificaciones(0);
-            experiencia.setCalificacion(0.0);
-            experiencia.setPaqueteMap(new HashMap<>());
-            experiencia.setCupoMaximo(experienciaDTO.getCupoMaximo());
-            experiencia.setDuracionDias(experienciaDTO.getDuracionDias());
+            Experiencia experiencia = Experiencia.builder()
+                    .nombreExperiencia(experienciaDTO.getNombreExperiencia())
+                    .descripcion(experienciaDTO.getDescripcion())
+                    .categoria(guardarCategoriaService.obtenerCategoria(experienciaDTO.getCategoria()))
+                    .destino(guardarDestinoService.guardarDestino(experienciaDTO.getDestino()))
+                    .cantidadCalificaciones(0)
+                    .calificacion(0.0)
+                    .paqueteMap(new HashMap<>())
+                    .cupoMaximo(experienciaDTO.getCupoMaximo())
+                    .duracionDias(experienciaDTO.getDuracionDias())
+                    .build();
+
             Paquete paquetePremium = guardarPaqueteService.guardarPaquete("premium", experienciaDTO.getPrecioPremium(), 1L);
             Paquete paqueteBasic = guardarPaqueteService.guardarPaquete("basic", experienciaDTO.getPrecioBasico(), 2L);
             experiencia.getPaqueteMap().put("premium", paquetePremium);
             experiencia.getPaqueteMap().put("basic", paqueteBasic);
             experienciaRepository.save(experiencia);
             experiencia.setImagenes(imagenService.guardarImagenes(experienciaDTO.getUrlImagenes(), experiencia));
+
             return experienciaRepository.save(experiencia);
         } catch (RuntimeException ex) {
                 throw new DataIntegrityViolationException("Uno de los campos está vacio");
