@@ -8,7 +8,6 @@ import digitalHouse.integrador8.travels.entity.Experiencia;
 import digitalHouse.integrador8.travels.exception.EntidadExistenteException;
 import digitalHouse.integrador8.travels.layers.repository.ExperienciaRepository;
 import org.junit.Assert;
-import org.junit.function.ThrowingRunnable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +21,6 @@ import org.mockito.quality.Strictness;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @MockitoSettings(strictness = Strictness.STRICT_STUBS)
