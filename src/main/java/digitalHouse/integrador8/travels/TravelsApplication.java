@@ -30,7 +30,7 @@ public class TravelsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		if (serviciosRepository.findAll().size() == 0) {
+		if (serviciosRepository.findAll().isEmpty()) {
 			serviciosRepository.save(new Servicios(true, true, true, true, true, true));
 			serviciosRepository.save(new Servicios(true, false, false, true, false, true));
 		}
