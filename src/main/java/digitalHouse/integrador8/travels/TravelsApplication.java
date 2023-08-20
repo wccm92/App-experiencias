@@ -43,7 +43,7 @@ public class TravelsApplication implements CommandLineRunner {
 				.direccion("internet")
 				.rol(Rol.ADMIN)
 				.build();
-		if (usuarioRepository.findAll().size() == 0) {
+		if (usuarioRepository.findAll().isEmpty()) {
 			usuarioRepository.save(usuarioAdmin);
 		}
 	}
