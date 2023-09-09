@@ -2,6 +2,7 @@ package digitalHouse.integrador8.travels.layers.service.reserva;
 
 import digitalHouse.integrador8.travels.dto.SolicitudCupoFechaDTO;
 import digitalHouse.integrador8.travels.entity.Experiencia;
+import digitalHouse.integrador8.travels.entity.Reserva;
 import digitalHouse.integrador8.travels.layers.repository.ReservaRepository;
 import digitalHouse.integrador8.travels.layers.service.ContarCuposReservaService;
 import digitalHouse.integrador8.travels.layers.service.experiencia.DetalleExperienciaService;
@@ -32,8 +33,8 @@ public class CuposDisponiblesReservaService implements ContarCuposReservaService
                 .stream()
                 .filter(reserva -> reserva.getFechaInicio().equals(fechaReserva)).toList()
                 .stream()
-                .map(reserva -> reserva.getCantidadCupos()).toList()
+                .map(Reserva::getCantidadCupos).toList()
                 .stream()
-                .reduce(0, (subtotal, cupos) -> subtotal + cupos);
+                .reduce(0, Integer::sum);
     }
 }

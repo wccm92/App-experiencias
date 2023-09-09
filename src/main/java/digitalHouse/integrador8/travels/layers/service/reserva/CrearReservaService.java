@@ -21,7 +21,7 @@ import java.util.List;
 
 
 @Service
-public class CrearReservaService implements ContarCuposReservaService {
+public class CrearReservaService {
 
     @Autowired
     UsuarioServiceImpl usuarioService;
@@ -36,11 +36,12 @@ public class CrearReservaService implements ContarCuposReservaService {
 
         Experiencia experiencia = experienciaService.obtenerExperienciaDB(idExperiencia);
         Usuario usuario = usuarioService.obtenerUsuarioPorEmail(solicitudReserva.getEmail());
+        boolean cuposLlenos = cuposLlenos(solicitudReserva.getCantidadCupos(), experiencia, solicitudReserva.getFechaInicio());
 
         if (solicitudReserva.getCantidadCupos() > experiencia.getCupoMaximo()) {
             throw new LimiteCupoException(experiencia.getNombreExperiencia(), experiencia.getCupoMaximo());
         }
-        if (cuposLlenos(solicitudReserva.getCantidadCupos(), experiencia, solicitudReserva.getFechaInicio())) {
+        if (cuposLlenos) {
             Integer cuposDisponibles = contarCuposDisponibles(experiencia, solicitudReserva.getFechaInicio());
             throw new CuposNoDisponiblesException(cuposDisponibles);
         }
@@ -52,10 +53,10 @@ public class CrearReservaService implements ContarCuposReservaService {
         List<Reserva> reservasPrevias = experiencia.getReservas().stream()
                 .filter(reserva -> reserva.getFechaInicio().equals(fechaNuevaReserva))
                 .toList();
-        if (reservasPrevias.size() == 0) {
+        if (reservasPrevias.isEmpty()) {
             return false;
         } else {
-            Integer cuposUsados = contarCuposUsados(experiencia, fechaNuevaReserva);
+            Integer cuposUsados = cuposDisponiblesReservaService.contarCuposUsados(experiencia, fechaNuevaReserva);
             cuposUsados += cantidadCupos;
             return cuposUsados > experiencia.getCupoMaximo();
         }
@@ -66,13 +67,13 @@ public class CrearReservaService implements ContarCuposReservaService {
         List<Reserva> reservasPrevias = experiencia.getReservas().stream()
                 .filter(reserva -> reserva.getFechaInicio().equals(fechaNuevaReserva))
                 .toList();
-        if (reservasPrevias.size() == 0) {
+        if (reservasPrevias.isEmpty()) {
             return false;
         } else {
             Integer cuposUsados = reservasPrevias.stream()
-                    .map(reserva -> reserva.getCantidadCupos()).toList()
+                    .map(Reserva::getCantidadCupos).toList()
                     .stream().
-                    reduce(0, (subtotal, cupos) -> subtotal + cupos);
+                    reduce(0, Integer::sum);
             return cuposUsados.equals(experiencia.getCupoMaximo());
         }
     }
@@ -102,16 +103,5 @@ public class CrearReservaService implements ContarCuposReservaService {
             precio = cantidadCupos * experiencia.getPaqueteMap().get("premium").getPrecio();
         }
         return precio;
-    }
-
-    @Override
-    public Integer contarCuposUsados(Experiencia experiencia, LocalDate fechaReserva) {
-        return experiencia.getReservas()
-                .stream()
-                .filter(reserva -> reserva.getFechaInicio().equals(fechaReserva)).toList()
-                .stream()
-                .map(reserva -> reserva.getCantidadCupos()).toList()
-                .stream()
-                .reduce(0, (subtotal, cupos) -> subtotal + cupos);
     }
 }
