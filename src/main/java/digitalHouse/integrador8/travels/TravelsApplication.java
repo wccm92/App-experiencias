@@ -39,7 +39,7 @@ public class TravelsApplication implements CommandLineRunner {
 				.nombre("admin")
 				.apellido("admin")
 				.email("admin@normad.com")
-				.password(passwordEncoder.encode("Normad2023*"))
+				.password(passwordEncoder.encode("Normad2023**"))
 				.direccion("internet")
 				.rol(Rol.ADMIN)
 				.build();
